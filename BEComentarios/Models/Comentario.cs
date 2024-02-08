@@ -4,6 +4,7 @@ namespace BEComentarios.Models
 {
     public class Comentario
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         public string Titulo { get; set; }
