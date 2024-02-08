@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BEComentarios.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240208195119_V1.0.0")]
-    partial class V100
+    [Migration("20240208205130_v1.0.0")]
+    partial class v100
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,6 +34,10 @@ namespace BEComentarios.Migrations
 
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Texto")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Titulo")
                         .IsRequired()

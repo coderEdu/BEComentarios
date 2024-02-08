@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,11 +9,27 @@ namespace BEComentarios.Controllers
     [ApiController]
     public class ComentarioController : ControllerBase
     {
+        private readonly ApplicationDbContext _context;
+
+        public ComentarioController(ApplicationDbContext context) 
+        {
+            _context = context; 
+        }
+
         // GET: api/<ComentarioController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2", "value3" };
+            try
+            {
+                var listComentarios = await _context.Comentarios.ToListAsync();
+                return Ok(listComentarios);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+                throw;
+            }
         }
 
         // GET api/<ComentarioController>/5

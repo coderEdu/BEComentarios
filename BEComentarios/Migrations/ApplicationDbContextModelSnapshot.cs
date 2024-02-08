@@ -32,6 +32,10 @@ namespace BEComentarios.Migrations
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("Texto")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("longtext");

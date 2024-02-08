@@ -10,6 +10,7 @@ namespace BEComentarios.Models
         public string Titulo { get; set; }
         [Required]
         public string Creador { get; set; }
+        public string Texto { get; set; }   
         [Required]
         public DateTime FechaCreacion { get; set;}
     }
