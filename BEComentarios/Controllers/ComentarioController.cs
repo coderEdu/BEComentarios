@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BEComentarios.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -34,15 +35,35 @@ namespace BEComentarios.Controllers
 
         // GET api/<ComentarioController>/5
         [HttpGet("{id}")]                                   
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            try
+            {
+                var comentario = await _context.Comentarios.FindAsync(id);
+
+                if (comentario == null) { return NotFound(); }
+                return Ok(comentario);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // POST api/<ComentarioController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> Post([FromBody] Comentario comentario)
         {
+            try
+            {
+                _context.Add(comentario);
+                await _context.SaveChangesAsync();
+                return Ok(comentario);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         // PUT api/<ComentarioController>/5
