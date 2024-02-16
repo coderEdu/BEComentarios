@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BEComentarios.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240208205130_v1.0.0")]
+    [Migration("20240216132303_v1.0.0")]
     partial class v100
     {
         /// <inheritdoc />
